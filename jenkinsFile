@@ -12,24 +12,22 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Spring Boot application using Maven
-                sh 'mvn clean install'
+                bat 'mvn clean install' // Use 'bat' for Windows
             }
         }
 
         stage('Test') {
             steps {
                 // Run tests (you can customize this based on your testing framework)
-                sh 'mvn test'
+                bat 'mvn test' // Use 'bat' for Windows
             }
         }
 
         stage('Package') {
             steps {
                 // Package the Spring Boot application
-                sh 'mvn package'
+                bat 'mvn package' // Use 'bat' for Windows
             }
         }
-
-       
     }
 }
