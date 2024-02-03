@@ -9,7 +9,7 @@ public class DepartmentDTO {
 	String deptName ;
 	
 	
-	
+
 	
 	
 	public int getDeptId() {
