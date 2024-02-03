@@ -1,5 +1,7 @@
 package com.SoftwareCompany.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.SoftwareCompany.DTO.DepartmentDTO;
 import com.SoftwareCompany.DTO.EmployeeDTO;
+import com.SoftwareCompany.entity.DepartmentEntity;
 import com.SoftwareCompany.entity.repository.EmployeeRepo;
 import com.SoftwareCompany.service.Service;
 
@@ -59,6 +63,11 @@ public class Controller {
         return "Hello, welcome to the simple API!";
     }
 	
+	
+	@RequestMapping(value ="/getDeptarmentName", method = RequestMethod.GET)
+	public DepartmentDTO fetchDeptDetails(@RequestParam  int deptId) {
+		return  service.fetchDeptDetails(deptId) ; 
+	}
 
 
 }

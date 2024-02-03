@@ -1,11 +1,16 @@
 package com.SoftwareCompany.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import com.SoftwareCompany.DTO.DepartmentDTO;
 import com.SoftwareCompany.DTO.EmployeeDTO;
+import com.SoftwareCompany.entity.DepartmentEntity;
 import com.SoftwareCompany.entity.EmployeeEntity;
+import com.SoftwareCompany.entity.repository.DeptarmentRepo;
 import com.SoftwareCompany.entity.repository.EmployeeRepo;
 @org.springframework.stereotype.Service
 public class Service {
@@ -13,6 +18,9 @@ public class Service {
 	
 	@Autowired 
 	EmployeeRepo employeeRepo ; 
+	
+	@Autowired 
+	DeptarmentRepo deptarmentRepo ; 
 	
 	
 	public EmployeeDTO fetchEmpDetails (int empId) {
@@ -60,6 +68,19 @@ public class Service {
 		empEntity.setLastName(newEmployeeDTO.getLastName());
 		employeeRepo.save(empEntity) ; 
 		
+	}
+
+
+	public  DepartmentDTO fetchDeptDetails (int deptId) {
+		DepartmentDTO departmentDTO = new DepartmentDTO() ; 
+			Optional<DepartmentEntity> deptEnityList = deptarmentRepo.findById(deptId) ; 
+			if(deptEnityList.isPresent()) {
+				DepartmentEntity entity = deptEnityList.get() ; 
+				  departmentDTO.setDeptId(entity.getDeptId());
+			        departmentDTO.setDeptName(entity.getDeptName());
+			}
+			
+			return departmentDTO ; 
 	}
 
 }
