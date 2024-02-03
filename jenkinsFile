@@ -33,7 +33,7 @@ pipeline {
         stage('Build Docker image'){
         steps{
         //build docker Image
-        bat 'docker build -t softwareCompanyDockerImage -f Dockerfile .'
+        bat 'docker build -t softwarecompanydockerimage -f Dockerfile .'
         }
         }
         
@@ -41,7 +41,7 @@ pipeline {
             steps {
                 // Push Docker image to registry (replace 'your-docker-username' with your Docker Hub username)
                 bat 'docker login -u sumityadav218 -p Cpt.price#+218'
-                bat 'docker push softwareCompanyDockerImage:latest'
+                bat 'docker push softwarecompanydockerimage:latest'
             }
         }
         
