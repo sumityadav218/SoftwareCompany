@@ -11,6 +11,7 @@ public class DepartmentDTO {
 	
 	
 	
+	
 	public int getDeptId() {
 		return deptId;
 	}
