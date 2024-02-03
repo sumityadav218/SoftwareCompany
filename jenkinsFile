@@ -29,5 +29,21 @@ pipeline {
                 bat 'mvn package' // Use 'bat' for Windows
             }
         }
+        
+        stage('Build Docker image'){
+        steps{
+        //build docker Image
+        bat 'docker build -t softwareCompanyDockerImage'
+        }
+        }
+        
+          stage('Push to Docker Registry') {
+            steps {
+                // Push Docker image to registry (replace 'your-docker-username' with your Docker Hub username)
+                bat 'docker login sumityadav218 -p Cpt.price#+218'
+                bat 'docker push softwareCompanyDockerImage:latest'
+            }
+        }
+        
     }
 }
