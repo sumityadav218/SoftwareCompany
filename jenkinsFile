@@ -41,7 +41,7 @@ pipeline {
             steps {
                 // Push Docker image to registry (replace 'your-docker-username' with your Docker Hub username)
                 bat 'docker login -u sumityadav218 -p Cpt.price#+218'
-                bat 'docker push softwarecompanydockerimage:latest'
+                bat 'docker push sumityadav218/softwarecompanydockerimage:latest'
             }
         }
         
