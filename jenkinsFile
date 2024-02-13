@@ -33,7 +33,7 @@ pipeline {
         stage('Build Docker image'){
         steps{
         //build docker Image
-        bat 'docker build -t softwarecompanydockerimage -f Dockerfile .'
+        bat 'docker build -t sumityadav218/softwarecompanydockerimage -f Dockerfile .'
         }
         }
         
