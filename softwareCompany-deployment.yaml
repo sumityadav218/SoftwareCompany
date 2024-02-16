@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: softwarecompany
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: softwarecompany
+  template:
+    metadata:
+      labels:
+        app: softwarecompany
+    spec:
+      containers:
+      - name: softwarecompany
+        image: softwarecompanyimage1:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+       
+        - name: DB_HOST
+          valueFrom:
+                configMapKeyRef :
+                  name : db-config
+                  key : host
+        
+        - name: DB_PORT
+          valueFrom:
+                configMapKeyRef :
+                  name : db-config
+                  key : port
+      
+        - name: DB_NAME
+          valueFrom :
+                configMapKeyRef :
+                  name : db-config
+                  key : dbName
+      
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: username
+       
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-credentials
+              key: password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: softwarecompany-service
+spec:
+  selector:
+    app: softwarecompany
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
